@@ -1,3 +1,28 @@
+2018-07-12 Joe Hunt
+Stock goes negative even if negative inventory is turned off. Fix by @kvvaradha
+M	admin/void_transaction.php
+
+2018-07-12 Joe Hunt
+Fiscal year delete leads to undefined variable $total. Fixed.
+M	admin/db/fiscalyears_db.inc
+
+2018-06-18 Joe Hunt
+AP Surf Set in demo data rerun
+M	sql/en_US-demo.sql
+
+2018-06-16 Joe Hunt
+Report 102 Aged Customer Analysis SQL fix
+M	purchasing/includes/db/suppliers_db.inc
+ 
+2018-06-12 Joe Hunt
+Wrong standard cost for AP Surf Set with rerun for wrong type
+M	sql/en_US-demo.sql
+
+2018-06-04 Joe Hunt
+Work Order Report rep402 option for GL rows and re-run
+M	reporting/rep402.php
+M	reporting/reports_main.php
+
 2018-06-01 Janusz Dobrowolski
 Synched all install languages with upstream
 M	install/lang/ar_EG/LC_MESSAGES/ar_EG.po	ar_EG.po
