@@ -103,8 +103,12 @@ function update_material_cost($stock_id, $qty, $unit_cost, $date)
 		write_journal_entries($cart);
 	}
 
-	if ($qty > 0 && ($qoh != -$qty))
-		$avg_cost = ($avg_cost*($qoh+$qty_delayed)+$unit_cost*$qty_new)/($qoh+$qty);
+	if ($qty > 0 && ($qoh != -$qty)) {
+		if ($qoh == 0 && $avg_cost != 0)
+			$avg_cost = ($avg_cost + ($unit_cost*$qty_new)/$qty)/2;
+		else
+			$avg_cost = ($avg_cost*($qoh+$qty_delayed)+$unit_cost*$qty_new)/($qoh+$qty);
+	}
 
 	$sql = "UPDATE ".TB_PREF."stock_master SET material_cost=".db_escape($avg_cost)."
 		    WHERE stock_id=".db_escape($stock_id);
@@ -163,6 +167,7 @@ function work_order_production_gl($woid, $stock_id, $quantity, $date_, $rcv_no)
 {
 	global $SysPrefs, $path_to_root;
 
+	$memo = "";
 	if ($SysPrefs->loc_notification() == 1)
 	{
 		include_once($path_to_root . "/sales/includes/cart_class.inc");
